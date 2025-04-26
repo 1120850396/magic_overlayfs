@@ -1,32 +1,32 @@
-name: Build Magisk module
+名字：名称：构建 Magisk 模块
 
-on:
-  workflow_dispatch:
-  push:
-  pull_request:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    if: ${{ !startsWith(github.event.head_commit.message, '[skip ci]') }}
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
-        fetch-depth: 0
-    - name: Setup Android NDK
-      run: |
+
+
+
+工作输入：
+  构建输入：
+    runs-on:     运行于：ubuntu-latest
+    if:     如果: ${{ !startsWith(github.event.head_commit.message, '[skip ci]') }}{{ !startsWith(github.event.head_commit.message, '[skip ci]') }}
+
+    步骤：
+    - 名称:     - 名称：结账
+      uses:       用途：actions/checkout@v2
+      与：
+        子模块：'递归'
+        取深度：0
+    - 名称：     - 名称: 设置 Android NDK
+      运行： |
         wget https://dl.google.com/android/repository/android-ndk-r23b-linux.zip
-        unzip android-ndk-r23b-linux.zip
-    - name: Build
-      id: build
-      run: |
+        解压 android-ndk-r23b-linux.zip
+    - 名字: 构建
+      id： 构建
+      运行： |
         chmod 777 ./build.sh
         ./build.sh
-    - name: Upload release
-      uses: actions/upload-artifact@v4
-      with:
-        name: magisk-overlayfs-release
-        path: out/magisk-module
+    - 名字: 上传发布
+      用途：actions/upload-artifact@v4
+      与：
+        名字: magisk-overlayfs-release
+        路径:         路径：out/magisk-module
